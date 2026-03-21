@@ -229,7 +229,6 @@ ai-resume-screening-app/
 |-------------|--------|
 | Resume PDF Parser | ✅ Complete |
 | Skill Gap Analysis | ✅ Complete |
-| Candidate Ranking System | ✅ Complete |
 | Streamlit Dashboard | ✅ Complete |
 
 ---
