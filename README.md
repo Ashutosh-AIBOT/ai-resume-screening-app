@@ -74,17 +74,6 @@ Resume Parser
   → Handles multi-page resumes
   → Cleans extracted text (encoding, whitespace)
         ↓
-NLP Preprocessing
-  → Lowercasing + punctuation removal
-  → NLTK stop word removal
-  → Lemmatization (WordNetLemmatizer)
-  → Tokenization
-        ↓
-TF-IDF Vectorization
-  → JD + all resumes vectorized together
-  → TfidfVectorizer (sklearn)
-  → Sparse matrix of term importance scores
-        ↓
 Cosine Similarity Scoring
   → Each resume vector vs JD vector
   → Similarity score: 0.0 to 1.0
@@ -95,20 +84,11 @@ Skill Gap Analysis
   → Check presence in each resume
   → Missing skills flagged per candidate
         ↓
-Candidate Ranking
-  → Sort all candidates by match score
-  → Top 10 highlighted with recommendation
-  → Bottom candidates flagged for review
-        ↓
 Streamlit Dashboard
   → Ranked table with scores
   → Per-candidate skill gap report
   → Download results as CSV
-        ↓
-Django Backend
-  → REST API for resume upload
-  → Stores results in database
-  → Serves ranking data to frontend
+
 ```
 
 ---
@@ -128,48 +108,28 @@ Django Backend
 - WordNet lemmatization for root word normalization
 - Tokenization for term frequency analysis
 - Handles both JD and resume text through same pipeline
-
-### 3. TF-IDF Vectorization
-- TfidfVectorizer from Scikit-learn
-- Vectorizes job description + all resumes together
-- Captures term importance relative to document corpus
-- Sparse matrix output for memory efficiency
-- Configurable n-gram range for phrase matching
-
-### 4. Cosine Similarity Scoring
-- Computes similarity between each resume and JD vector
-- Score range: 0.0 (no match) to 1.0 (perfect match)
-- Converted to percentage for HR-friendly display
-- Handles edge cases (empty resume, very short JD)
-
-### 5. Skill Gap Analysis
+- 
+### 3. Skill Gap Analysis
 - Extracts required skills list from JD automatically
 - Checks each resume for presence of required skills
 - Returns per-candidate missing skills list
 - Categorizes gaps: Critical Missing / Nice-to-Have Missing
 - Helps HR give structured feedback to candidates
 
-### 6. Candidate Ranking System
+### 4. Candidate Ranking System
 - Sorts all uploaded resumes by match percentage
 - Top candidates flagged with green recommendation
 - Below-threshold candidates flagged for review
 - Tie-breaking by skill gap count
 - Results exportable as CSV for HR records
 
-### 7. Streamlit Dashboard
+### 5. Streamlit Dashboard
 - Job description input text area
 - Bulk PDF resume uploader
 - Ranked candidates table with color-coded scores
 - Expandable per-candidate skill gap detail
 - Download ranked results as CSV
 - Clean HR-friendly interface — no technical knowledge needed
-
-### 8. Django Backend
-- REST API for resume file upload and processing
-- Stores job descriptions and candidate scores in database
-- Serves ranking results to Streamlit frontend
-- Admin panel for HR team to manage job postings
-- Authentication for multi-user HR team access
 
 ---
 
@@ -235,11 +195,9 @@ python manage.py runserver
 |------|---------|
 | Python 3.11 | Core language |
 | NLTK | Stop words, lemmatization, tokenization |
-| Scikit-learn | TF-IDF vectorization, cosine similarity |
 | PyPDF2 | PDF text extraction |
 | Pandas | Data manipulation and ranking |
 | Streamlit | Interactive HR dashboard |
-| Django | REST API backend and database |
 | SQLite / PostgreSQL | Candidate and job data storage |
 | Git | Version control |
 
@@ -255,19 +213,9 @@ ai-resume-screening-app/
 │   ├── __init__.py
 │   ├── parser.py                   # PyPDF2 resume text extraction
 │   ├── preprocessor.py             # NLP cleaning pipeline
-│   ├── vectorizer.py               # TF-IDF vectorization
 │   ├── scorer.py                   # Cosine similarity scoring
 │   ├── skill_gap.py                # Skill gap detection
 │   └── ranker.py                   # Candidate ranking logic
-│
-├── django_api/
-│   ├── manage.py                   # Django management
-│   ├── api/
-│   │   ├── models.py               # Job + Candidate models
-│   │   ├── views.py                # API endpoints
-│   │   ├── serializers.py          # DRF serializers
-│   │   └── urls.py                 # URL routing
-│   └── settings.py                 # Django configuration
 │
 ├── requirements.txt
 └── README.md
@@ -280,15 +228,9 @@ ai-resume-screening-app/
 | Deliverable | Status |
 |-------------|--------|
 | Resume PDF Parser | ✅ Complete |
-| NLP Preprocessing Pipeline | ✅ Complete |
-| TF-IDF Vectorization | ✅ Complete |
-| Cosine Similarity Scoring | ✅ Complete |
 | Skill Gap Analysis | ✅ Complete |
 | Candidate Ranking System | ✅ Complete |
 | Streamlit Dashboard | ✅ Complete |
-| Django Backend | ✅ Complete |
-| CSV Export | ✅ Complete |
-| Multi-user HR Access | 🔄 In Progress |
 
 ---
 
@@ -315,49 +257,4 @@ B.Tech Electronics Engineering · CGPA 7.5 · Batch 2026
 >
 > — Ashutosh, building this from zero.
 ```
-
----
-
-**Commit message:**
-```
-docs: add professional README with NLP pipeline, scoring system, architecture and links
-```
-
----
-
-## 🎉 ALL 10 REPOS DONE
-
-Here is your complete summary:
-
-| # | New Repo Name | Status |
-|---|-------------|--------|
-| 1 | `olist-ecommerce-analytics` | ✅ Done |
-| 2 | `forecastx-demand-forecasting` | ✅ Done |
-| 3 | `customer-churn-risk-analytics` | ✅ Done |
-| 4 | `social-media-campaign-analytics` | ✅ Done |
-| 5 | `whatsapp-chat-intelligence` | ✅ Done |
-| 6 | `neurobot-conversational-ai` | ✅ Done |
-| 7 | `multimodal-rag-research-assistant` | ✅ Done |
-| 8 | `voice-text-to-image-pipeline` | ✅ Done |
-| 9 | `plant-disease-detection-cnn` | ✅ Done |
-| 10 | `ai-resume-screening-app` | ✅ Done |
-
----
-
-**3 things to do right now:**
-
-**1.** Pin your top 6 repos on your GitHub profile page in this order:
-```
-olist-ecommerce-analytics
-forecastx-demand-forecasting
-customer-churn-risk-analytics
-social-media-campaign-analytics
-whatsapp-chat-intelligence
-multimodal-rag-research-assistant
-```
-
-**2.** Add to your GitHub profile bio:
-```
-Data Analyst | GenAI Developer | Python · SQL · Power BI · LangChain
-📧 ashutoshknp12@gmail.com
 🌐 ashutosh-portfolio-kappa.vercel.app
