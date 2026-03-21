@@ -1,4 +1,4 @@
-# 📄 AI Resume Screening App — NLP-Powered Candidate Ranking
+# 📄 AI Resume Screening App 
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat-square&logo=python)
 ![NLP](https://img.shields.io/badge/NLP-TF--IDF_+_Cosine-green?style=flat-square)
