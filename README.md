@@ -54,10 +54,8 @@ skill gaps — replacing manual HR screening with data.
 | Metric | Value |
 |--------|-------|
 | Input | Job Description + Multiple PDF Resumes |
-| Matching Method | TF-IDF + Cosine Similarity |
 | Output | Ranked candidate list with match % |
 | Skill Detection | Automated gap analysis per candidate |
-| Backend | Django REST API |
 | Frontend | Streamlit interactive dashboard |
 | Resume Format | PDF (PyPDF2 extraction) |
 
